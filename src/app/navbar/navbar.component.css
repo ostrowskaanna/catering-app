@@ -1,0 +1,37 @@
+#navbar {
+    background-color: white;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 10px 0px 10px gray;
+    font-size: larger;
+}
+
+#logo {
+    height: 8vh;
+}
+
+#order {
+    background-color: #53c653;
+    color: white;
+    width: 10vw;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+p {
+    color: #53c653;
+    cursor: pointer;
+}
+
+
+#content {
+    height: 90vh;
+    width: 100vw;
+}

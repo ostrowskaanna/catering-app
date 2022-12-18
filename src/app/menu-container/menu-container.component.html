@@ -1,0 +1,7 @@
+<div id="dishes" *ngFor="let dish of dishes">
+        <app-menu-card [dishName]="dish.name"
+                    [dishPhoto]="dish.photoUrl"
+                    [dishQuantity]="dish.quantity"
+                    [dishPrice]="dish.price">
+        </app-menu-card>
+</div>

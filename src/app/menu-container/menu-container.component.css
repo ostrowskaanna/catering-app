@@ -1,0 +1,4 @@
+#dishes {
+    display: flex;
+    flex-direction: column;
+}

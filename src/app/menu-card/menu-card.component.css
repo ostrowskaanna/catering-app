@@ -1,0 +1,33 @@
+#menu-card {
+    height: 250px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0px 4px 8px 0px gray;
+    background-color: white;
+    border-radius: 5%;
+}
+
+#dish-photo {
+    align-self: center;
+}
+
+#dish-name {
+    align-self: center;
+}
+
+#info {
+    display: flex;
+    justify-content: space-between;
+}
+
+#supply {
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+#price {
+    margin-right: 10px;
+}
