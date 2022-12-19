@@ -10,14 +10,19 @@
 }
 
 #logo {
-    height: 8vh;
+    height: 8vh; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #order {
-    background-color: #53c653;
+    background-color: #dbcec3;
     color: white;
-    width: 10vw;
-    height: 4vh;
+    width: 100px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -26,12 +31,16 @@
 }
 
 p {
-    color: #53c653;
+    color: gray;
     cursor: pointer;
 }
-
 
 #content {
     height: 90vh;
     width: 100vw;
+}
+
+#menu {
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }

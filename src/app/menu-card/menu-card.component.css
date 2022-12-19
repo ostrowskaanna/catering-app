@@ -1,33 +1,77 @@
 #menu-card {
-    height: 250px;
+    height: 300px;
     width: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     box-shadow: 0px 4px 8px 0px gray;
     background-color: white;
-    border-radius: 5%;
+    border: 5px solid #dbcec3;
+    color: gray;
 }
 
 #dish-photo {
     align-self: center;
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    object-fit: cover;
+        user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #dish-name {
     align-self: center;
+    margin-top: 0px;
+}
+
+#details {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    align-self: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #info {
     display: flex;
-    justify-content: space-between;
-}
-
-#supply {
-    display: flex;
-    justify-content: center;
-    margin-left: 10px;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #price {
     margin-right: 10px;
+    border: 2px solid #dbcec3;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#supply {
+    display: flex;
+    align-items: center;
+}
+
+#dish-q {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#plus, #minus {
+    background-color: #dbcec3;
+    width: 20px;
+    height: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }

@@ -1,12 +1,15 @@
 <div id="menu-card">
     <img id="dish-photo" [src]="dishPhoto" alt="dish photo">
-    <h3 id="dish-name">{{dishName}}</h3>
-    <div id="info">
-        <div id="supply">
-            <p id="plus">+</p>
-            <p id="quantity">{{dishQuantity}}</p>
-            <p id="minus">-</p>
+    <div id="text">
+        <h3 id="dish-name">{{dishName}}</h3>
+        <p id="details">see details</p>
+        <div id="info">
+            <div id="supply">
+                <div id="plus" (click)="onClickPlus()"><fa-icon [icon]="faPlus"></fa-icon></div>
+                <p id="dish-q">{{dishQuantity}}</p>
+                <div id="minus" (click)="onClickMinus()"><fa-icon [icon]="faMinus"></fa-icon></div>
+            </div>
+            <p id="price">{{dishPrice}}€</p>
         </div>
-        <p id="price">{{dishPrice}}</p>
     </div>
 </div>

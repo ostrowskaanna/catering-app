@@ -10,7 +10,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent {
 
   faShoppingCart = faShoppingCart;
-  logoUrl: string = "assets/images/logo.png";
+  logoUrl: string = "assets/images/logo2.png";
   @ViewChild('main') mainPageButton!: ElementRef;
   onClick(event: any) {
     //change bg color
