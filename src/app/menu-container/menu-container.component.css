@@ -9,3 +9,13 @@
 #dish-card {
     margin: 20px;
 }
+
+#addButton {
+    width: 80px;
+    height: 50px;
+    color: gray;
+    background-color: white;
+    cursor: pointer;
+    border-color: #dbcec3;
+    font-family: "Papyrus";
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-menu-container',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu-container.component.css']
 })
 export class MenuContainerComponent {
+
+  constructor(public service: DataService) {
+    this.getSmallestPrice();
+    this.getBiggestPrice();
+  }
+
   dishes = [
     { 
       id: 0, 
@@ -70,6 +77,19 @@ export class MenuContainerComponent {
       quantity: 18, 
       price: 4 
     }
-  ]
+  ];
+
+  getSmallestPrice() {
+    this.service.smallestPrice = Math.min(...this.dishes.map(dish => dish.price));
+  }
+
+  getBiggestPrice() {
+    this.service.biggestPrice = Math.max(...this.dishes.map(dish => dish.price));
+  }
+
+  addDish() {
+
+  }
+
 }
 

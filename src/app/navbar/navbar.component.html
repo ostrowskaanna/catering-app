@@ -5,5 +5,5 @@
     <p id="shipping">Shipping</p>
     <p id="contact">Contact</p>
     <p id="client-panel">Client Panel</p>
-    <div id="order"><fa-icon [icon]="faShoppingCart"></fa-icon>Order</div>
+    <div id="order" (click)="showOrder()"><fa-icon [icon]="faShoppingCart"></fa-icon>Order<div [ngStyle]="{'background-color': this.service.dishCounter>10 ? '#dbcec3': 'white'}" id="products-counter">{{this.service.dishCounter}}</div></div>
 </div>

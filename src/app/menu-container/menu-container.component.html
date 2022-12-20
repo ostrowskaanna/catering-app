@@ -1,5 +1,6 @@
+<button id="addButton" (click)="addDish()">add new dish</button>
 <div id="dishes-container">
-        <app-menu-card id="dish-card" *ngFor="let dish of dishes" 
+        <app-menu-card id="dish-card" *ngFor="let dish of dishes"
                 [dishName]="dish.name" 
                 [dishPhoto]="dish.photoUrl[0]"
                 [dishQuantity]="dish.quantity"

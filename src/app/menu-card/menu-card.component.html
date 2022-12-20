@@ -1,15 +1,16 @@
-<div id="menu-card">
+<div id="menu-card" [ngStyle] = "{'border-color': this.dishPrice==this.service.smallestPrice ? '#8ed4b3' : this.dishPrice==this.service.biggestPrice ? '#fa9187' : 'dbcec3'}">
     <img id="dish-photo" [src]="dishPhoto" alt="dish photo">
     <div id="text">
         <h3 id="dish-name">{{dishName}}</h3>
         <p id="details">see details</p>
         <div id="info">
             <div id="supply">
-                <div id="plus" (click)="onClickPlus()"><fa-icon [icon]="faPlus"></fa-icon></div>
-                <p id="dish-q">{{dishQuantity}}</p>
-                <div id="minus" (click)="onClickMinus()"><fa-icon [icon]="faMinus"></fa-icon></div>
+                <div id="plus" *ngIf="dishQuantity!=0" (click)="onClickPlus()"><fa-icon [icon]="faPlus"></fa-icon></div>
+                <p [ngStyle]="{'color': dishQuantity>3 ? 'gray': '#fa9187'}" id="dish-q">{{dishQuantity}}</p>
+                <div id="minus" *ngIf="dishLocalCounter!=0" (click)="onClickMinus()"><fa-icon [icon]="faMinus"></fa-icon></div>
             </div>
             <p id="price">{{dishPrice}}€</p>
         </div>
     </div>
 </div>
+<button id="removeButton" (click)="removeDish($event)">remove dish</button>

@@ -2,6 +2,11 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: "Papyrus";
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #menu-container {
