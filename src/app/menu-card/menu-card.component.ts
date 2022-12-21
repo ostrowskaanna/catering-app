@@ -11,36 +11,50 @@ export class MenuCardComponent {
 
   constructor(public service: DataService) {}
 
+  @Input() dishId!: number;
   @Input() dishName: string | undefined;
   @Input() dishPhoto: string | undefined;
   @Input() dishQuantity!: number;
   @Input() dishPrice: number | undefined;
+
   faPlus = faPlus;
   faMinus = faMinus;
   dishLocalCounter = 0;
   
-  onClickPlus(){
+  onClickPlus(event: any){
     if(this.dishQuantity>0){
-      console.log("plus clicked");
       this.service.dishCounter-=this.dishLocalCounter;
       this.dishLocalCounter++;
       this.service.dishCounter+=this.dishLocalCounter;
       this.dishQuantity--; 
+      
+      const dish = {
+        id: this.dishId,
+        name: this.dishName,
+        photo: this.dishPhoto,
+        price: this.dishPrice
+      }
+      this.service.addDish(dish);
     }
-    console.log(this.service.smallestPrice);
   }
 
   onClickMinus(){
     if(this.dishLocalCounter>0){
-      console.log("minus clicked");
       this.service.dishCounter-=this.dishLocalCounter;
       this.dishLocalCounter--;
       this.service.dishCounter+=this.dishLocalCounter;
       this.dishQuantity++;
+
+      const dish = {
+        id: this.dishId,
+        name: this.dishName,
+        photo: this.dishPhoto,
+        price: this.dishPrice
+      }
+
     }
   }
 
-  removeDish(event: any) {
-    console.log(event.target);
+  removeDish() {
   }
 }

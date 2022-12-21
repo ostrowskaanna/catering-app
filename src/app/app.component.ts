@@ -1,5 +1,6 @@
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { MenuContainerComponent } from './menu-container/menu-container.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +8,5 @@ import { MenuContainerComponent } from './menu-container/menu-container.componen
 })
 export class AppComponent {
   
-  
+
 }

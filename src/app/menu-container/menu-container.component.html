@@ -1,9 +1,12 @@
-<button id="addButton" (click)="addDish()">add new dish</button>
-<div id="dishes-container">
-        <app-menu-card id="dish-card" *ngFor="let dish of dishes"
-                [dishName]="dish.name" 
-                [dishPhoto]="dish.photoUrl[0]"
-                [dishQuantity]="dish.quantity"
-                [dishPrice]="dish.price">
-        </app-menu-card>
-</div>
+<body>
+        <button id="addButton" (click)="addDish()">add new dish</button>
+        <div id="dishes-container">
+                <app-menu-card id="dish-card" *ngFor="let dish of dishes"
+                        [dishId] = "dish.id"
+                        [dishName]="dish.name" 
+                        [dishPhoto]="dish.photoUrl[0]"
+                        [dishQuantity]="dish.quantity"
+                        [dishPrice]="dish.price">
+                </app-menu-card>
+        </div>
+</body>

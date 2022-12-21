@@ -1,0 +1,13 @@
+<div id="summary">
+    <h3 id="title">Order Summary</h3>
+    <div id="listbox-area">
+        <span id="listName">Dishes:</span>
+        <ul id="dishesList">
+            <li id="listEl" *ngFor ="let dish of this.service.addedDishes">
+                <p id="name"></p>
+                <p id="number"></p>
+                <p id="price"></p>
+            </li>
+        </ul>
+    </div>
+</div>

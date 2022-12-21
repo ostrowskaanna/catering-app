@@ -5,7 +5,7 @@
         <p id="details">see details</p>
         <div id="info">
             <div id="supply">
-                <div id="plus" *ngIf="dishQuantity!=0" (click)="onClickPlus()"><fa-icon [icon]="faPlus"></fa-icon></div>
+                <div id="plus" *ngIf="dishQuantity!=0" (click)="onClickPlus($event)"><fa-icon [icon]="faPlus"></fa-icon></div>
                 <p [ngStyle]="{'color': dishQuantity>3 ? 'gray': '#fa9187'}" id="dish-q">{{dishQuantity}}</p>
                 <div id="minus" *ngIf="dishLocalCounter!=0" (click)="onClickMinus()"><fa-icon [icon]="faMinus"></fa-icon></div>
             </div>
@@ -13,4 +13,4 @@
         </div>
     </div>
 </div>
-<button id="removeButton" (click)="removeDish($event)">remove dish</button>
+<button id="removeButton" (click)="removeDish()">remove dish</button>
