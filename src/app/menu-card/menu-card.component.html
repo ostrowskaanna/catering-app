@@ -2,7 +2,7 @@
     <img id="dish-photo" [src]="dishPhoto" alt="dish photo">
     <div id="text">
         <h3 id="dish-name">{{dishName}}</h3>
-        <p id="details">see details</p>
+        <p id="details" (click)="showDishDetails()">see details</p>
         <div id="info">
             <div id="supply">
                 <div id="plus" *ngIf="dishQuantity!=0" (click)="onClickPlus($event)"><fa-icon [icon]="faPlus"></fa-icon></div>
@@ -13,4 +13,4 @@
         </div>
     </div>
 </div>
-<button id="removeButton" (click)="removeDish()">remove dish</button>
+<button id="removeButton" (click)="removeDishFromDB()">remove dish</button>

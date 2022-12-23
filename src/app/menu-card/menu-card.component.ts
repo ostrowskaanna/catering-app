@@ -1,6 +1,8 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from '../data.service';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { DetailsComponent } from '../details/details.component';
 
 @Component({
   selector: 'app-menu-card',
@@ -9,13 +11,16 @@ import { DataService } from '../data.service';
 })
 export class MenuCardComponent {
 
-  constructor(public service: DataService) {}
+  constructor(public service: DataService, public dialog: MatDialog) {}
 
   @Input() dishId!: number;
-  @Input() dishName: string | undefined;
-  @Input() dishPhoto: string | undefined;
+  @Input() dishName!: string;
+  @Input() dishOrigin!: string;
+  @Input() dishType!: string; 
+  @Input() dishPhoto!: string;
   @Input() dishQuantity!: number;
-  @Input() dishPrice: number | undefined;
+  @Input() dishPrice!: number;
+  @Input() allPhotos!: any;
 
   faPlus = faPlus;
   faMinus = faMinus;
@@ -31,8 +36,8 @@ export class MenuCardComponent {
       const dish = {
         id: this.dishId,
         name: this.dishName,
-        photo: this.dishPhoto,
-        price: this.dishPrice
+        price: this.dishPrice,
+        number: 1
       }
       this.service.addDish(dish);
     }
@@ -48,13 +53,33 @@ export class MenuCardComponent {
       const dish = {
         id: this.dishId,
         name: this.dishName,
-        photo: this.dishPhoto,
-        price: this.dishPrice
+        price: this.dishPrice,
+        number: 1
       }
-
+      this.service.removeDish(dish);
     }
   }
 
-  removeDish() {
+  removeDishFromDB() {
+
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    //dialogConfig.disableClose = true;
+    this.dialog.open(DetailsComponent, dialogConfig);
+  }
+
+  showDishDetails() {
+    const dish = {
+      id: this.dishId,
+      name: this.dishName,
+      origin: this.dishOrigin, 
+      type: this.dishType,
+      photos: this.allPhotos
+    }
+    this.service.dishToDisplay = dish;
+    this.openDialog();
   }
 }

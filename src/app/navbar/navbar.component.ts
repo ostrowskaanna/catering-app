@@ -13,7 +13,7 @@ import { OrderComponent } from '../order/order.component';
 
 export class NavbarComponent {
 
-  constructor(public service: DataService, private dialog: MatDialog) {}
+  constructor(public service: DataService, public dialog: MatDialog) {}
 
   faShoppingCart = faShoppingCart;
   logoUrl: string = "assets/images/logo2.png";
@@ -27,6 +27,7 @@ export class NavbarComponent {
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
+    //dialogConfig.disableClose = true;
     this.dialog.open(OrderComponent, dialogConfig);
   }
 

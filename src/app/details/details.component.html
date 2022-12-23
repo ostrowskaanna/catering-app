@@ -1,0 +1,8 @@
+<div id="details">
+    <h3 id="name">{{this.dish.name}}</h3>
+    <p id="info">Traditional and well-known {{this.dish.type}} from {{this.dish.origin}}.</p>
+    <p>See the photos below</p>
+    <div id="photos">
+        <img id="photo" *ngFor="let photo of this.dish.photos" [src]="photo">
+    </div>
+</div>

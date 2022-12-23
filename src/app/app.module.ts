@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuContainerComponent } from './menu-container/menu-container.component';
 import { OrderComponent } from './order/order.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     MenuCardComponent,
     MenuContainerComponent,
-    OrderComponent
+    OrderComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
