@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,7 +27,8 @@ import { DetailsComponent } from './details/details.component';
     FontAwesomeModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

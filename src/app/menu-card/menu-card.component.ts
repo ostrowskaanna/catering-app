@@ -1,8 +1,9 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from '../data.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { DetailsComponent } from '../details/details.component';
+import { MenuContainerComponent } from '../menu-container/menu-container.component';
 
 @Component({
   selector: 'app-menu-card',
@@ -20,8 +21,8 @@ export class MenuCardComponent {
   @Input() dishPhoto!: string;
   @Input() dishQuantity!: number;
   @Input() dishPrice!: number;
-  @Input() allPhotos!: any;
-
+  @Input() allPhotos!: string[];
+  
   faPlus = faPlus;
   faMinus = faMinus;
   dishLocalCounter = 0;
@@ -60,14 +61,18 @@ export class MenuCardComponent {
     }
   }
 
+  @Output() newItemEvent = new EventEmitter<number>();
+
   removeDishFromDB() {
+    console.log("in child");
+    this.newItemEvent.emit(this.dishId);
 
   }
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    //dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     this.dialog.open(DetailsComponent, dialogConfig);
   }
 
@@ -80,6 +85,7 @@ export class MenuCardComponent {
       photos: this.allPhotos
     }
     this.service.dishToDisplay = dish;
+    this.service.displayPhotos();
     this.openDialog();
   }
 }

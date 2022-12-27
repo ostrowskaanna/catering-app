@@ -1,4 +1,5 @@
 import { Injectable, Input } from '@angular/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,8 @@ export class DataService {
   addedDishes: any[] = []
   totalSum = 0;
   dishToDisplay!: any;
+  imageObject: Array<object> = [];
+  photos: string[] = [];
 
   addDish(dish: any) {
     let exist = false;
@@ -38,6 +41,21 @@ export class DataService {
       }   
     });
     this.totalSum -= dish.price;
+  }
+
+  checkIfDishAddedToOrder(dish: any) {
+    return this.addedDishes.filter(d => d.id==dish.id).length;
+  }
+
+  displayPhotos() {
+    this.photos = this.dishToDisplay.photos;
+    this.photos.forEach(p => {
+      let photo = {
+        image: p,
+        thumbImage: p
+      }
+      this.imageObject.push(photo);
+    })
   }
 
 }

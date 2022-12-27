@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data.service';
+import { MenuCardComponent } from '../menu-card/menu-card.component';
 
 @Component({
   selector: 'app-menu-container',
@@ -12,8 +13,9 @@ export class MenuContainerComponent {
     this.getSmallestPrice();
     this.getBiggestPrice();
   }
+  cardsList: MenuCardComponent[] = [];
 
-  dishes = [
+  public dishes = [
     { 
       id: 0, 
       name: 'pizza margherita', 
@@ -88,6 +90,22 @@ export class MenuContainerComponent {
   }
 
   addDish() {
+    console.log("here form for adding new dish");
+  }
+
+  deleteDish(id: number) {
+    let localId = -1;
+    console.log("in parent");
+    this.dishes.forEach(dish => { 
+      localId++;
+      if(dish.id == id){
+        this.dishes.splice(localId, 1); //delete from DB soon
+        while(this.service.checkIfDishAddedToOrder(dish) > 0){ //delete from order
+          this.service.removeDish(dish);
+          this.service.dishCounter--;
+        }  
+      }    
+    });
 
   }
 
