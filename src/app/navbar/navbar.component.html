@@ -1,8 +1,8 @@
 <div id="navbar">
     <img id="logo" [src]="logoUrl">
-    <p id="main" (click)="onClick($event)">Main Page</p>
-    <p id="menu">Menu</p>
-    <p id="shipping">Shipping</p>
+    <p id="main" routerLink="/main" (click)="goToMainPage($event)">Main Page</p>
+    <p id="menu" routerLink="/menu">Menu</p>
+    <p id="shipping" routerLink="/shipping">Shipping</p>
     <p id="contact">Contact</p>
     <p id="client-panel">Client Panel</p>
     <div id="order" (click)="showOrder()"><fa-icon [icon]="faShoppingCart"></fa-icon>Order<div [ngStyle]="{'background-color': this.service.dishCounter>10 ? '#dbcec3': 'white'}" id="products-counter">{{this.service.dishCounter}}</div></div>

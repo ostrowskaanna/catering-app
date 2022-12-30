@@ -1,8 +1,10 @@
-body {
+#all {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: "Papyrus";
+    justify-content: space-evenly;
+    margin-top: 40px;
 }
 
 #dishes-container {

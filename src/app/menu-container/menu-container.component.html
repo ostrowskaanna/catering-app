@@ -1,15 +1,17 @@
 <body>
-        <button id="addButton" (click)="addDish()">add new dish</button>
-        <div id="dishes-container">
-                <app-menu-card id="dish-card" *ngFor="let dish of dishes; index as i" (newItemEvent)="deleteDish($event)"
-                        [dishId] = "dish.id"
-                        [dishName]="dish.name" 
-                        [dishOrigin] = "dish.origin"
-                        [dishType] = "dish.type"
-                        [dishPhoto]="dish.photoUrl[0]"
-                        [dishQuantity]="dish.quantity"
-                        [dishPrice]="dish.price"
-                        [allPhotos]="dish.photoUrl">
-                </app-menu-card>
+        <div id="all">
+                <button id="addButton" (click)="addDish()">add new dish</button>
+                <div id="dishes-container">
+                        <app-menu-card id="dish-card" *ngFor="let dish of dishes; index as i" (newItemEvent)="deleteDish($event)"
+                                [dishId] = "dish.id"
+                                [dishName]="dish.name" 
+                                [dishOrigin] = "dish.origin"
+                                [dishType] = "dish.type"
+                                [dishPhoto]="dish.photoUrl[0]"
+                                [dishQuantity]="dish.quantity"
+                                [dishPrice]="dish.price"
+                                [allPhotos]="dish.photoUrl">
+                        </app-menu-card>
+                </div>
         </div>
 </body>

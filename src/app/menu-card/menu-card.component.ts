@@ -72,7 +72,7 @@ export class MenuCardComponent {
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
+    //dialogConfig.disableClose = true;
     this.dialog.open(DetailsComponent, dialogConfig);
   }
 

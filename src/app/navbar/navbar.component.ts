@@ -18,7 +18,7 @@ export class NavbarComponent {
   faShoppingCart = faShoppingCart;
   logoUrl: string = "assets/images/logo2.png";
 
-  onClick(event: any) {
+  goToMainPage(event: any) {
     //change bg color
     event.target.style['text-decoration'] = 'underline';
     event.target.style['text-underline-offset'] = '5px';
