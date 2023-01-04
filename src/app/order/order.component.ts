@@ -16,7 +16,9 @@ export class OrderComponent {
 
   goToPaymentPage() {
     this.closeDialog();
-    //here route to different path 
+    if(this.service.displayedEl)
+      this.service.displayedEl.style.textDecoration = 'none';
+    this.service.displayedEl = null;
   }
 
 }

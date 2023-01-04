@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgImageSliderModule } from 'ng-image-slider';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterLink, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,11 +16,17 @@ import { DetailsComponent } from './details/details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ShippingInfoComponent } from './shipping-info/shipping-info.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { ClientPanelComponent } from './client-panel/client-panel.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'menu', component: MenuContainerComponent },
   { path: 'shipping', component: ShippingInfoComponent },
+  { path: 'contact', component: ContactInfoComponent },
+  { path: 'client-panel', component: ClientPanelComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -35,7 +41,10 @@ const appRoutes: Routes = [
     DetailsComponent,
     PageNotFoundComponent,
     MainPageComponent,
-    ShippingInfoComponent
+    ShippingInfoComponent,
+    ContactInfoComponent,
+    ClientPanelComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,5 @@ const appRoutes: Routes = [
   entryComponents: [OrderComponent]
 })
 
-
 export class AppModule { 
-
 }

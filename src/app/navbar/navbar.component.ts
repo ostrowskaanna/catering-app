@@ -18,16 +18,26 @@ export class NavbarComponent {
   faShoppingCart = faShoppingCart;
   logoUrl: string = "assets/images/logo2.png";
 
-  goToMainPage(event: any) {
-    //change bg color
+  ngOnInit(){
+    let defaultUrl = window.location.protocol + "//" + window.location.host + '/menu';
+    console.log(defaultUrl);
+    //window.location.pathname = 'menu';
+    let elDis = document.getElementById('menu');
+    this.service.displayedEl = elDis;
+  }
+
+  changeUnderline(event: any) {
+    if(this.service.displayedEl){
+      this.service.displayedEl.style.textDecoration = 'none';
+    }
     event.target.style['text-decoration'] = 'underline';
-    event.target.style['text-underline-offset'] = '5px';
+    this.service.displayedEl = event.target;
   }
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    //dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     this.dialog.open(OrderComponent, dialogConfig);
   }
 

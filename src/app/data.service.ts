@@ -15,6 +15,8 @@ export class DataService {
   imageObject: Array<object> = [];
   photos: string[] = [];
 
+  displayedEl: HTMLElement | null = null;
+
   addDish(dish: any) {
     let exist = false;
     this.addedDishes.forEach(d => {
