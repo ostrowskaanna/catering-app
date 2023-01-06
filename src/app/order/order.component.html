@@ -15,7 +15,7 @@
         </ul>
     </div>
     <div id="buttons">
-        <button id="continueButton" (click)="closeDialog()">continue shopping</button>
+        <button id="continueButton" routerLink="/menu" (click)="closeDialog()">continue shopping</button>
         <div id="priceSummary">
             <p id="sum">Sum:</p>
             <p id="total">{{this.service.totalSum}}€</p>

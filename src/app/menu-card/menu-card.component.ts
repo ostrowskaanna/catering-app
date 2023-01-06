@@ -27,6 +27,15 @@ export class MenuCardComponent {
   faMinus = faMinus;
   dishLocalCounter = 0;
   
+  ngOnInit() {
+    this.service.addedDishes.forEach(dish => {
+      if(dish.id == this.dishId) {
+        this.dishLocalCounter += dish.number;
+        this.dishQuantity -= dish.number;
+      }
+    })
+  }
+
   onClickPlus(event: any){
     if(this.dishQuantity>0){
       this.service.dishCounter-=this.dishLocalCounter;
@@ -57,14 +66,14 @@ export class MenuCardComponent {
         price: this.dishPrice,
         number: 1
       }
-      this.service.removeDish(dish);
+      this.service.removeDishFromOrder(dish);
     }
   }
 
   @Output() newItemEvent = new EventEmitter<number>();
 
   removeDishFromDB() {
-    console.log("in child");
+    console.log("in child id: " + this.dishId);
     this.newItemEvent.emit(this.dishId);
 
   }
@@ -85,7 +94,7 @@ export class MenuCardComponent {
       photos: this.allPhotos
     }
     this.service.dishToDisplay = dish;
-    this.service.displayPhotos();
+    //this.service.displayPhotos();
     this.openDialog();
   }
 }

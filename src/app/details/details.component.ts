@@ -14,16 +14,16 @@ export class DetailsComponent {
   photos: string[] = [];
   imageObject: Array<object> = [];
   ngOnInit() {
-  this.dish = this.service.dishToDisplay;
-  this.photos = this.dish.photos;
-  console.log(this.photos);
-  this.photos.forEach(p => {
-    let photo = {
-      image: p,
-      thumbImage: p
-    }
-    this.imageObject.push(photo);
-  });
-  console.log(this.imageObject);
+    this.dish = this.service.dishToDisplay;
+    // this.photos = this.dish.photos;
+    // console.log(this.photos);
+    // this.photos.forEach(p => {
+    //   let photo = {
+    //     image: p,
+    //     thumbImage: p
+    //   }
+    //   this.imageObject.push(photo);
+    // });
+    console.log(this.imageObject);
   }
 }

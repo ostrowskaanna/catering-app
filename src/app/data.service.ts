@@ -30,7 +30,7 @@ export class DataService {
     this.totalSum += dish.price;  
   }
 
-  removeDish(dish: any) {
+  removeDishFromOrder(dish: any) {
     let id = -1;
     this.addedDishes.forEach(d => {
       id++;
@@ -45,8 +45,8 @@ export class DataService {
     this.totalSum -= dish.price;
   }
 
-  checkIfDishAddedToOrder(dish: any) {
-    return this.addedDishes.filter(d => d.id==dish.id).length;
+  checkIfDishAddedToOrder(id: number) {
+    return this.addedDishes.filter(d => d.id==id).length;
   }
 
   displayPhotos() {

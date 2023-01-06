@@ -20,6 +20,10 @@ import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { ClientPanelComponent } from './client-panel/client-panel.component';
 import { PaymentComponent } from './payment/payment.component';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'menu', component: MenuContainerComponent },
@@ -53,7 +57,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatDialogModule,
     NgImageSliderModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   exports: [RouterModule],
   providers: [],

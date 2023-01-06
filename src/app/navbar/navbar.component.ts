@@ -19,9 +19,6 @@ export class NavbarComponent {
   logoUrl: string = "assets/images/logo2.png";
 
   ngOnInit(){
-    let defaultUrl = window.location.protocol + "//" + window.location.host + '/menu';
-    console.log(defaultUrl);
-    //window.location.pathname = 'menu';
     let elDis = document.getElementById('menu');
     this.service.displayedEl = elDis;
   }

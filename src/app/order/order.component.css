@@ -3,6 +3,9 @@
     width: 60vw;
     font-family: "Papyrus";
     color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #title {
