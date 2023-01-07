@@ -1,0 +1,24 @@
+
+    <form id="form" #newDishForm="ngForm" (ngSubmit)="addNewDish(newDishForm)">
+        <h2>Create new dish</h2>
+        <label for="name">What is the dish name?</label>
+        <input type="text" id="name" name="name" placeholder="dish name" ngModel required>
+        <label for="origin">Where is the dish from?</label>
+        <select class="form-control" id="origin" name="origin" ngModel required>
+            <option *ngFor="let origin of this.origins" [value]="origin">{{origin}}</option>
+        </select>
+        <label for="type">What is the type of the dish?</label>
+        <select class="form-control" id="type" name="type" ngModel required>
+            <option *ngFor="let type of this.types" [value]="type">{{type}}</option>
+        </select>
+        <label for="quantity">How many portions are available?</label>
+        <input type="number" min="1" id="quantity" name="quantity" placeholder="dish quantity" ngModel required>
+        <label for="price">What is the price of the dish (in €)?</label>
+        <input type="number" min="1" id="price" name="price" placeholder="dish price" ngModel required>
+        <label for="photos">Upload images (at least 1 is required)</label>
+        <input type="file" id="photos" name="photos" multiple (change)="onFileSelected($event)" required>
+    </form>
+    <div id="buttons">
+        <button (click)="closeDialog()">Cancel</button>
+        <button (click)="addNewDish(newDishForm)">Submit</button>
+    </div>

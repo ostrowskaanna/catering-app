@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgImageSliderModule } from 'ng-image-slider';
-
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuCardComponent } from './menu-card/menu-card.component';
-import { FormsModule } from '@angular/forms';
 import { MenuContainerComponent } from './menu-container/menu-container.component';
 import { OrderComponent } from './order/order.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,10 +19,13 @@ import { ShippingInfoComponent } from './shipping-info/shipping-info.component';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { ClientPanelComponent } from './client-panel/client-panel.component';
 import { PaymentComponent } from './payment/payment.component';
+import { DishFormComponent } from './dish-form/dish-form.component';
+
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
@@ -48,7 +51,8 @@ const appRoutes: Routes = [
     ShippingInfoComponent,
     ContactInfoComponent,
     ClientPanelComponent,
-    PaymentComponent
+    PaymentComponent,
+    DishFormComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,8 @@ const appRoutes: Routes = [
     NgImageSliderModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [],

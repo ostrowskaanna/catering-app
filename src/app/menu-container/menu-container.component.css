@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     overflow: hidden;
     width: 60vw;
+    margin-top: 50px;
 }
 
 #dish-card {

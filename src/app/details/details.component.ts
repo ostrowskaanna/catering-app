@@ -15,6 +15,7 @@ export class DetailsComponent {
   imageObject: Array<object> = [];
   ngOnInit() {
     this.dish = this.service.dishToDisplay;
+    this.imageObject = this.service.imageObject;
     // this.photos = this.dish.photos;
     // console.log(this.photos);
     // this.photos.forEach(p => {
@@ -24,6 +25,5 @@ export class DetailsComponent {
     //   }
     //   this.imageObject.push(photo);
     // });
-    console.log(this.imageObject);
   }
 }

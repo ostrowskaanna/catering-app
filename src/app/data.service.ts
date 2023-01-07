@@ -61,7 +61,8 @@ export class DataService {
         thumbImage: p
       }
       this.imageObject.push(photo);
-    })
+    });
+    console.log(this.imageObject);
   }
 
 }

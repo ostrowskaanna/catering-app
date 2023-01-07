@@ -101,7 +101,18 @@ export class MenuCardComponent {
       photos: this.allPhotos
     }
     this.service.dishToDisplay = dish;
-    //this.service.displayPhotos();
+    this.allPhotos.forEach(photo => {
+      const imgRef = ref(this.service.storage, photo);
+      getDownloadURL(imgRef).then(url => {
+        let photo = {
+              image: url,
+              thumbImage: url
+            }
+            this.service.imageObject.push(photo); 
+      }).catch(err => console.log(err));
+    });
+    console.log(this.service.imageObject);
     this.openDialog();
+    //this.service.displayPhotos();
   }
 }
