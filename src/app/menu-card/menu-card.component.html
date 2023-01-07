@@ -1,5 +1,5 @@
 <div id="menu-card" [ngStyle] = "{'border-color': this.dishPrice==this.service.smallestPrice ? '#8ed4b3' : this.dishPrice==this.service.biggestPrice ? '#fa9187' : 'dbcec3'}">
-    <img id="dish-photo" [src]="dishPhoto">
+    <img id="dish-photo" [src]="dishPhoto" alt="photo here">
     <div id="text">
         <h3 id="dish-name">{{dishName}}</h3>
         <p id="details" (click)="showDishDetails()">see details</p>

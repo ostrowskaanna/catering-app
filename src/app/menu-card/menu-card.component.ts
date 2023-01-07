@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { DetailsComponent } from '../details/details.component';
 import { MenuContainerComponent } from '../menu-container/menu-container.component';
+import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'firebase/storage';
 
 @Component({
   selector: 'app-menu-card',
@@ -28,6 +29,12 @@ export class MenuCardComponent {
   dishLocalCounter = 0;
   
   ngOnInit() {
+    const imgRef = ref(this.service.storage, this.allPhotos[0]);
+    getDownloadURL(imgRef).then(url => {
+      this.dishPhoto = url.toString();
+    });
+    console.log(this.dishPhoto);
+
     this.service.addedDishes.forEach(dish => {
       if(dish.id == this.dishId) {
         this.dishLocalCounter += dish.number;

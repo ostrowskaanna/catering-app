@@ -1,4 +1,5 @@
 import { Injectable, Input } from '@angular/core';
+import { FirebaseStorage } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -6,16 +7,19 @@ import { Injectable, Input } from '@angular/core';
 
 
 export class DataService {
-  dishCounter = 0;
+  dishCounter = 0; //number of dishes added to the basket 
   smallestPrice = 1000;
   biggestPrice = 0;
-  addedDishes: any[] = []
-  totalSum = 0;
-  dishToDisplay!: any;
+  addedDishes: any[] = [] //dishes added to the basket 
+  totalSum = 0; //total price of added dishes 
+  dishToDisplay!: any; 
   imageObject: Array<object> = [];
   photos: string[] = [];
 
   displayedEl: HTMLElement | null = null;
+  
+  dishesInDB = 0; //number of dishes in DB
+  storage!: FirebaseStorage; //data storage
 
   addDish(dish: any) {
     let exist = false;
