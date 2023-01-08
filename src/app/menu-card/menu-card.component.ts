@@ -6,6 +6,7 @@ import { DetailsComponent } from '../details/details.component';
 import { MenuContainerComponent } from '../menu-container/menu-container.component';
 import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'firebase/storage';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-menu-card',
@@ -14,7 +15,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class MenuCardComponent {
 
-  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage) {}
+  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage, private db: AngularFirestore,) {}
 
   @Input() dishId!: number;
   @Input() dishName!: string;
@@ -29,15 +30,20 @@ export class MenuCardComponent {
   faMinus = faMinus;
   dishLocalCounter = 0;
   
-  async ngOnInit() {
-    // const imgRef = ref(this.service.storage, this.allPhotos[0]);
-    // getDownloadURL(imgRef).then(url => {
-    //   this.dishPhoto = url.toString();
-    // });
-    const imgRef = this.fs.ref(this.allPhotos[0]);
-    await imgRef.getDownloadURL().subscribe(url => {
-      this.dishPhoto = url;
-    })
+  ngOnInit() {
+
+    // this.service.dishesRef.forEach(dishes => {
+    //   dishes.forEach((dish: any) => {
+    //     if(dish.id==this.dishId){
+    //       this.dishPhoto = dish.data.url[0];
+    //     }
+    //   })
+    // })
+    // const imgRef = this.fs.ref(this.allPhotos[0]);
+    // imgRef.getDownloadURL().subscribe(url => {
+    //   console.log(url);
+    //   this.dishPhoto = url;
+    // })
 
     this.service.addedDishes.forEach(dish => {
       if(dish.id == this.dishId) {
