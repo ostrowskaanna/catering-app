@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { DetailsComponent } from '../details/details.component';
 import { MenuContainerComponent } from '../menu-container/menu-container.component';
 import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'firebase/storage';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-menu-card',
@@ -13,7 +14,7 @@ import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'fire
 })
 export class MenuCardComponent {
 
-  constructor(public service: DataService, public dialog: MatDialog) {}
+  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage) {}
 
   @Input() dishId!: number;
   @Input() dishName!: string;
@@ -28,12 +29,15 @@ export class MenuCardComponent {
   faMinus = faMinus;
   dishLocalCounter = 0;
   
-  ngOnInit() {
-    const imgRef = ref(this.service.storage, this.allPhotos[0]);
-    getDownloadURL(imgRef).then(url => {
-      this.dishPhoto = url.toString();
-    });
-    console.log(this.dishPhoto);
+  async ngOnInit() {
+    // const imgRef = ref(this.service.storage, this.allPhotos[0]);
+    // getDownloadURL(imgRef).then(url => {
+    //   this.dishPhoto = url.toString();
+    // });
+    const imgRef = this.fs.ref(this.allPhotos[0]);
+    await imgRef.getDownloadURL().subscribe(url => {
+      this.dishPhoto = url;
+    })
 
     this.service.addedDishes.forEach(dish => {
       if(dish.id == this.dishId) {

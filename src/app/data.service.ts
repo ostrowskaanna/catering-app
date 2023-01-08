@@ -1,5 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { FirebaseStorage } from 'firebase/storage';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class DataService {
   
   dishesInDB = 0; //number of dishes in DB
   storage!: FirebaseStorage; //data storage
-
+  dishesRef!: Observable<any>; //DB dishes
+  
   addDish(dish: any) {
     let exist = false;
     this.addedDishes.forEach(d => {
@@ -64,5 +66,6 @@ export class DataService {
     });
     console.log(this.imageObject);
   }
+
 
 }

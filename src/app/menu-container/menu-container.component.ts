@@ -6,6 +6,7 @@ import { map, Observable } from 'rxjs';
 import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'firebase/storage';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { DishFormComponent } from '../dish-form/dish-form.component';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-menu-container',
@@ -18,7 +19,7 @@ export class MenuContainerComponent {
   storage = getStorage();
   allUrls: string[] = [];
 
-  constructor(public service: DataService, private db: AngularFirestore, public dialog: MatDialog) {
+  constructor(public service: DataService, private db: AngularFirestore, private fs: AngularFireStorage, public dialog: MatDialog) {
     this.dishesRef = db.collection('dishes').snapshotChanges().pipe(map(dishes => dishes.map(dish => {
       const data = dish.payload.doc.data();
       const id = dish.payload.doc.id;
@@ -27,6 +28,7 @@ export class MenuContainerComponent {
     this.getSmallestPrice(this.dishesRef);
     this.getBiggestPrice(this.dishesRef);
     this.service.storage = this.storage;
+    this.service.dishesRef = this.dishesRef;
 
     // this.dishesRef.subscribe(dishes => { 
     //   console.log(dishes);
@@ -93,6 +95,7 @@ export class MenuContainerComponent {
       localId++;
       if(dish.id == id){
         console.log("id found");
+
         //delete from order
         while(this.service.checkIfDishAddedToOrder(dish.id) > 0){ 
           const dishTmp = {
@@ -104,9 +107,18 @@ export class MenuContainerComponent {
           this.service.removeDishFromOrder(dishTmp);
           this.service.dishCounter--;
         }  
-        //delete from DB and delete dish card TO DO!!!!!!!!!!!!!!!!!!!
+
+        //delete from DB
         const dishesRefTmp = this.db.collection('dishes');
         dishesRefTmp.doc(id).delete();
+        
+        //delete images from storage 
+        const storageRef = this.fs.ref('images');
+         dish.data.photos.forEach((photo: string) => {
+          const name = photo.substring(7);
+          storageRef.child(name).delete(); 
+        })
+        
       }  
     }));
   }

@@ -16,7 +16,7 @@
         <label for="price">What is the price of the dish (in €)?</label>
         <input type="number" min="1" id="price" name="price" placeholder="dish price" ngModel required>
         <label for="photos">Upload images (at least 1 is required)</label>
-        <input type="file" id="photos" name="photos" multiple (change)="onFileSelected($event)" required>
+        <input type="file" lang="en" id="photos" name="photos" multiple (change)="onFileSelected($event)" ngModel required>
     </form>
     <div id="buttons">
         <button (click)="closeDialog()">Cancel</button>
