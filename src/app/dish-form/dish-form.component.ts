@@ -3,10 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-import { getStorage, ref, uploadBytes} from 'firebase/storage';
+import { getStorage, ref, getDownloadURL} from 'firebase/storage';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
 import { UploadTaskSnapshot } from '@angular/fire/compat/storage/interfaces';
+import { arrayUnion } from 'firebase/firestore';
 
 @Component({
   selector: 'app-dish-form',
@@ -37,7 +38,6 @@ export class DishFormComponent {
   }
 
   async addNewDish(form: any) {
-
     const dishesRef = this.db.collection('dishes');
     const data = form.value;
     data['photos'] = this.uploadedImagesPaths;
@@ -49,8 +49,7 @@ export class DishFormComponent {
 
     if(form.valid && unique){
       this.closeDialog();
- 
-      //add first image to storage
+      // add first image to storage
       let imgRef = this.fs.ref(this.uploadedImagesPaths[0]);
       let task = this.fs.upload(this.uploadedImagesPaths[0], this.uploadedFiles[0]);
       task.snapshotChanges().pipe(
@@ -58,24 +57,41 @@ export class DishFormComponent {
           imgRef.getDownloadURL().subscribe(downloadURL => {
             console.log(downloadURL);
             data['url'] = [downloadURL];
-            dishesRef.add({...data});
+            // add document to database 
+            let newDishId: string | null = null;
+            dishesRef.add({ ...data }).then(function (dishesRef) {
+              newDishId = dishesRef.id;
+            });
             console.log("data uploaded");
             this.uploadedImagesPaths.splice(0, 1);
+            // add the rest of images to storage and its url to db
             this.uploadedImagesPaths.forEach((path, index) => {
-              this.fs.upload(path, this.uploadedFiles[index]);
+              this.fs.upload(path, this.uploadedFiles[index]).then( () => {
+                this.addURL(path, newDishId);
+              });
             });
-          })
+          });
         })
       ).subscribe();
     }
-
     else if(!unique)
       alert("we already have this dish in the menu :(");
 
   }
 
-  onFileSelected(event: any) {
+  addURL(imgPath: string, dishId: any) {
+    const dishRef = this.db.collection('dishes').doc(`${dishId}`);
+    const imgRef = ref(this.service.storage, imgPath);
+    getDownloadURL(imgRef).then(downloadURL => {
+      dishRef.update({ url: arrayUnion(downloadURL)})
+    }).catch(err => console.log(err));
+    console.log("URL added");
+  }
+
+
+  onFileSelected(event: any): void {
     this.uploadedImagesPaths.splice(0);
+    this.uploadedFiles.splice(0);
     Array.from(event.target.files).forEach((file: any) => {
       this.uploadedImagesPaths.push('images/' + Math.random() + file.name);
       this.uploadedFiles.push(file);

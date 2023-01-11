@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule, Routes } from '@angular/router';
+import { SwiperModule } from 'swiper/angular';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    SwiperModule
   ],
   exports: [RouterModule],
   providers: [],

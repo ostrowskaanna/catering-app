@@ -7,6 +7,8 @@ import { MenuContainerComponent } from '../menu-container/menu-container.compone
 import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'firebase/storage';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { updateDoc, arrayUnion, doc, getFirestore } from 'firebase/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @Component({
   selector: 'app-menu-card',
@@ -15,7 +17,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class MenuCardComponent {
 
-  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage, private db: AngularFirestore,) {}
+  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage, private db: AngularFirestore, private dbModule: AngularFireModule) {}
 
   @Input() dishId!: number;
   @Input() dishName!: string;
@@ -30,21 +32,14 @@ export class MenuCardComponent {
   faMinus = faMinus;
   dishLocalCounter = 0;
   
-  ngOnInit() {
+  async ngOnInit() {
 
-    // this.service.dishesRef.forEach(dishes => {
-    //   dishes.forEach((dish: any) => {
-    //     if(dish.id==this.dishId){
-    //       this.dishPhoto = dish.data.url[0];
-    //     }
-    //   })
-    // })
+    //tu było pobieranieurl na biezaco ale jednka mam je w bazie
     // const imgRef = this.fs.ref(this.allPhotos[0]);
     // imgRef.getDownloadURL().subscribe(url => {
     //   console.log(url);
     //   this.dishPhoto = url;
     // })
-
     this.service.addedDishes.forEach(dish => {
       if(dish.id == this.dishId) {
         this.dishLocalCounter += dish.number;
@@ -103,6 +98,8 @@ export class MenuCardComponent {
   }
 
   showDishDetails() {
+    this.service.dishToDisplay = null;
+    console.log(this.dishName + " in menu-card");
     const dish = {
       id: this.dishId,
       name: this.dishName,
@@ -111,18 +108,21 @@ export class MenuCardComponent {
       photos: this.allPhotos
     }
     this.service.dishToDisplay = dish;
-    this.allPhotos.forEach(photo => {
-      const imgRef = ref(this.service.storage, photo);
-      getDownloadURL(imgRef).then(url => {
-        let photo = {
-              image: url,
-              thumbImage: url
-            }
-            this.service.imageObject.push(photo); 
-      }).catch(err => console.log(err));
-    });
-    console.log(this.service.imageObject);
+   // await this.addURLs();
+    this.service.currentDishRef = this.db.collection('dishes').doc(`${this.dishId}`);
+
     this.openDialog();
-    //this.service.displayPhotos();
   }
+
+  // async addURLs(): Promise<void> {
+  //   const dishRef = this.db.collection('dishes').doc(`${this.dishId}`);
+
+  //   this.service.imageObject.splice(0);
+  //   this.allPhotos.forEach(photo => {
+  //     const imgRef = ref(this.service.storage, photo);
+  //     getDownloadURL(imgRef).then(downloadURL => {
+  //       dishRef.update({ url: arrayUnion(downloadURL) })
+  //     }).catch(err => console.log(err));
+  //   });
+  // }
 }

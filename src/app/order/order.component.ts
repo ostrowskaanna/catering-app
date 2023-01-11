@@ -12,6 +12,14 @@ export class OrderComponent {
 
   closeDialog() {
     this.dialog.closeAll();
+    let elDis = document.getElementById('menu');
+    if(elDis){
+      elDis.style.textDecoration = 'underline';
+    }
+    if(this.service.displayedEl){
+      this.service.displayedEl.style.textDecoration = 'none';
+    }
+    this.service.displayedEl = elDis;
   }
 
   goToPaymentPage() {

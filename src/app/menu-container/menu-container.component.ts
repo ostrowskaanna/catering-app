@@ -118,7 +118,6 @@ export class MenuContainerComponent {
           const name = photo.substring(7);
           storageRef.child(name).delete(); 
         })
-        
       }  
     }));
   }

@@ -1,4 +1,5 @@
 import { Injectable, Input } from '@angular/core';
+import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { FirebaseStorage } from 'firebase/storage';
 import { Observable } from 'rxjs';
 
@@ -22,7 +23,8 @@ export class DataService {
   dishesInDB = 0; //number of dishes in DB
   storage!: FirebaseStorage; //data storage
   dishesRef!: Observable<any>; //DB dishes
-  
+  currentDishRef!: AngularFirestoreDocument<unknown>;
+
   addDish(dish: any) {
     let exist = false;
     this.addedDishes.forEach(d => {

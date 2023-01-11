@@ -1,11 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { MenuContainerComponent } from '../menu-container/menu-container.component';
+
+import { SwiperComponent } from "swiper/angular";
+
+// import Swiper core and required modules
+import SwiperCore, { Navigation } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([Navigation]);
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  styleUrls: ['./details.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DetailsComponent {
 
@@ -16,14 +25,9 @@ export class DetailsComponent {
   ngOnInit() {
     this.dish = this.service.dishToDisplay;
     this.imageObject = this.service.imageObject;
-    // this.photos = this.dish.photos;
-    // console.log(this.photos);
-    // this.photos.forEach(p => {
-    //   let photo = {
-    //     image: p,
-    //     thumbImage: p
-    //   }
-    //   this.imageObject.push(photo);
-    // });
+    console.log(this.dish.name + " in details");
+    console.log(this.dish.photos);
+    console.log(this.service.currentDishRef);
+    
   }
 }

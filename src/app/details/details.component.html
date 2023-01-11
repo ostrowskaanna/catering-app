@@ -1,8 +1,13 @@
+
 <div id="details">
     <h3 id="name">{{this.dish.name | uppercase}}</h3>
     <p id="info">{{this.dish.type}} from {{this.dish.origin}}</p>
     <p>see the photos below</p>
-    <div id="photos">
-        <ng-image-slider [images]="this.imageObject"></ng-image-slider>
-    </div>
+    <swiper [navigation]="true">
+        <ng-container class="mySwiper" *ngFor="let photoURL of this.dish.photos">
+            <ng-template swiperSlide>
+                <img [src]="photoURL" alt="photo here">
+            </ng-template>
+        </ng-container>
+    </swiper>
 </div>
