@@ -1,0 +1,9 @@
+<div id="slider">
+    <swiper [navigation]="true">
+        <ng-container class="mySwiper" *ngFor="let photoURL of this.dish.photos">
+            <ng-template swiperSlide>
+                <img [src]="photoURL" alt="photo here">
+            </ng-template>
+        </ng-container>
+    </swiper>
+</div>

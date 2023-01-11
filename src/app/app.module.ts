@@ -21,7 +21,7 @@ import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { ClientPanelComponent } from './client-panel/client-panel.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DishFormComponent } from './dish-form/dish-form.component';
-
+import { ImgSliderComponent } from './img-slider/img-slider.component';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -53,7 +53,8 @@ const appRoutes: Routes = [
     ContactInfoComponent,
     ClientPanelComponent,
     PaymentComponent,
-    DishFormComponent
+    DishFormComponent,
+    ImgSliderComponent
   ],
   imports: [
     BrowserModule,

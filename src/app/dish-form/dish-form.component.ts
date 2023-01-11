@@ -49,7 +49,7 @@ export class DishFormComponent {
 
     if(form.valid && unique){
       this.closeDialog();
-      // add first image to storage
+      // add first image to storage so it can be loaded in the card immediately
       let imgRef = this.fs.ref(this.uploadedImagesPaths[0]);
       let task = this.fs.upload(this.uploadedImagesPaths[0], this.uploadedFiles[0]);
       task.snapshotChanges().pipe(
@@ -57,15 +57,17 @@ export class DishFormComponent {
           imgRef.getDownloadURL().subscribe(downloadURL => {
             console.log(downloadURL);
             data['url'] = [downloadURL];
-            // add document to database 
+            // add data to db
             let newDishId: string | null = null;
             dishesRef.add({ ...data }).then(function (dishesRef) {
               newDishId = dishesRef.id;
             });
             console.log("data uploaded");
             this.uploadedImagesPaths.splice(0, 1);
+            this.uploadedFiles.splice(0, 1);
             // add the rest of images to storage and its url to db
             this.uploadedImagesPaths.forEach((path, index) => {
+              console.log("adding img index " + index);
               this.fs.upload(path, this.uploadedFiles[index]).then( () => {
                 this.addURL(path, newDishId);
               });
