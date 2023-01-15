@@ -1,11 +1,9 @@
 <body>
-        <div id="content">
-                <app-filters></app-filters>
                 <div id="all">
-                
+                        <app-filters></app-filters>
                         <button id="addButton" (click)="addDish()">add new dish</button>
                         <div id="dishes-container">
-                                <app-menu-card *ngFor="let dish of dishesRef | async | paginate: { itemsPerPage: 3, currentPage: p }" (newItemEvent)="deleteDish($event)" 
+                                <app-menu-card *ngFor="let dish of ((dishesRef | filterDishes: {origin: 'italy'}) | async) | paginate: { itemsPerPage: 3, currentPage: p }" (newItemEvent)="deleteDish($event)" 
                                         [dishId] = "dish.id"
                                         [dishName]= "dish.data.name" 
                                         [dishOrigin] = "dish.data.origin"
@@ -18,7 +16,7 @@
                         </div>
                         <pagination-controls class="my-pagination" (pageChange)="p = $event;"></pagination-controls>
                 </div>
-        </div>
+
         
 
 </body>

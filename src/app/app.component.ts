@@ -13,6 +13,6 @@ import { MenuContainerComponent } from './menu-container/menu-container.componen
 export class AppComponent {
   constructor(private router: Router){}
   ngOnInit(){
-    this.router.navigate(['']);
+    this.router.navigate(['main']);
   }
 }

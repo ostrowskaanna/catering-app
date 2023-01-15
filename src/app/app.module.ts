@@ -38,7 +38,7 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactInfoComponent },
   { path: 'client-panel', component: ClientPanelComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: '', redirectTo: 'menu', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

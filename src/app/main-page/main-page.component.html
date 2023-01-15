@@ -1,1 +1,19 @@
-<p>main-page works!</p>
+<div id="main-page">
+    <div id="all">
+        <div id="title">
+            <h1>Welcome to</h1>
+            <img [src]="logoUrl" alt="">
+        </div>
+        <div id="text">
+            <div id="box">
+                Tasty food, always delivered on time!
+            </div>
+            <div id="intro">
+                Don't wait any longer and
+                <div id="button" (click)="changeUnderline($event)" routerLink="/menu">check menu</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+

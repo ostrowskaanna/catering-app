@@ -19,8 +19,11 @@ export class NavbarComponent {
   logoUrl: string = "assets/images/logo2.png";
 
   ngOnInit(){
-    let elDis = document.getElementById('menu');
+    let elDis = document.getElementById('main');
     this.service.displayedEl = elDis;
+    if(this.service.displayedEl){
+      this.service.displayedEl.style.textDecoration = 'underline';
+    }
   }
 
   changeUnderline(event: any) {
