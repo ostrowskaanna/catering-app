@@ -1,0 +1,19 @@
+<div id="filters">
+    <p>Filter dishes: </p>
+    <form id="form" #filterForm="ngForm">
+        <label for="origin">origin: </label>
+        <select class="form-control" id="origin" name="origin" (change)="originSelected($event)" ngModel required>
+            <option *ngFor="let origin of this.origins" [value]="origin">{{origin}}</option>
+        </select>
+        <label for="type">type: </label>
+        <select class="form-control" id="type" name="type" (change)="typeSelected($event)" ngModel required>
+            <option *ngFor="let type of this.types" [value]="type">{{type}}</option>
+        </select>
+        <label for="min-price" class="form-label">min price: </label>
+        <span id="min-price-txt">$0</span>
+        <input type="range" class="form-range" min="0" max="99" id="min-price" step="1" value="0">
+        <label for="max-price" class="form-label">max price: </label>
+        <span id="max-price-txt">$100</span>
+        <input type="range" class="form-range" min="1" max="100" id="max-price" step="1" value="100">
+    </form>
+</div>

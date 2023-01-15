@@ -13,11 +13,14 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   templateUrl: './menu-container.component.html',
   styleUrls: ['./menu-container.component.css']
 })
+
+
 export class MenuContainerComponent {
 
   dishesRef: Observable<any>;
   storage = getStorage();
   allUrls: string[] = [];
+  p: number = 1;
 
   constructor(public service: DataService, private db: AngularFirestore, private fs: AngularFireStorage, public dialog: MatDialog) {
     this.dishesRef = db.collection('dishes').snapshotChanges().pipe(map(dishes => dishes.map(dish => {
@@ -54,14 +57,13 @@ export class MenuContainerComponent {
 
   }
 
-
-  downloadURL(photos: any) {
-    const imgRef = ref(this.storage, photos[0]);
-    getDownloadURL(imgRef).then(url => {
-      console.log(url);
-    }).catch(err => console.log(err));
-    return imgRef.toString();
-  }
+  // downloadURL(photos: any) {
+  //   const imgRef = ref(this.storage, photos[0]);
+  //   getDownloadURL(imgRef).then(url => {
+  //     console.log(url);
+  //   }).catch(err => console.log(err));
+  //   return imgRef.toString();
+  // }
 
   getSmallestPrice(dishesRef: Observable<any>) {
     dishesRef.subscribe(dishes => {

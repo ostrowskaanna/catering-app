@@ -5,6 +5,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule, Routes } from '@angular/router';
 import { SwiperModule } from 'swiper/angular';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,6 +28,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterDishesPipe } from './filter-dishes.pipe';
+import { FiltersComponent } from './filters/filters.component';
 
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
@@ -54,7 +57,9 @@ const appRoutes: Routes = [
     ClientPanelComponent,
     PaymentComponent,
     DishFormComponent,
-    ImgSliderComponent
+    ImgSliderComponent,
+    FilterDishesPipe,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    SwiperModule
+    SwiperModule,
+    NgxPaginationModule
   ],
   exports: [RouterModule],
   providers: [],

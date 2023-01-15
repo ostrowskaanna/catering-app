@@ -1,17 +1,24 @@
 <body>
-        <div id="all">
-                <button id="addButton" (click)="addDish()">add new dish</button>
-                <div id="dishes-container">
-                        <app-menu-card *ngFor="let dish of dishesRef | async" (newItemEvent)="deleteDish($event)" 
-                                [dishId] = "dish.id"
-                                [dishName]= "dish.data.name" 
-                                [dishOrigin] = "dish.data.origin"
-                                [dishType] = "dish.data.type"
-                                [dishPhoto] = "dish.data.url[0]"
-                                [dishQuantity]="dish.data.quantity"
-                                [dishPrice]="dish.data.price"
-                                [allPhotos]="dish.data.url">
-                        </app-menu-card>
+        <div id="content">
+                <app-filters></app-filters>
+                <div id="all">
+                
+                        <button id="addButton" (click)="addDish()">add new dish</button>
+                        <div id="dishes-container">
+                                <app-menu-card *ngFor="let dish of dishesRef | async | paginate: { itemsPerPage: 3, currentPage: p }" (newItemEvent)="deleteDish($event)" 
+                                        [dishId] = "dish.id"
+                                        [dishName]= "dish.data.name" 
+                                        [dishOrigin] = "dish.data.origin"
+                                        [dishType] = "dish.data.type"
+                                        [dishPhoto] = "dish.data.url[0]"
+                                        [dishQuantity]="dish.data.quantity"
+                                        [dishPrice]="dish.data.price"
+                                        [allPhotos]="dish.data.url">
+                                </app-menu-card>
+                        </div>
+                        <pagination-controls class="my-pagination" (pageChange)="p = $event;"></pagination-controls>
                 </div>
         </div>
+        
+
 </body>
