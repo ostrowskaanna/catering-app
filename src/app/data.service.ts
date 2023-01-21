@@ -25,10 +25,10 @@ export class DataService {
   dishesRef!: Observable<any>; //DB dishes
   currentDishRef!: AngularFirestoreDocument<unknown>;
 
-  originSelected: string | null = null;
-  typeSelected: string | null = null;
-  minPriceSelected!: number;
-  maxPriceSelected!: number;
+  originSelected: string = '';
+  typeSelected: string = '';
+  minPriceSelected: number = -1;
+  maxPriceSelected: number = -1;
   
   addDish(dish: any) {
     let exist = false;

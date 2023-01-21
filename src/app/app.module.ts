@@ -30,6 +30,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterDishesPipe } from './filter-dishes.pipe';
 import { FiltersComponent } from './filters/filters.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
@@ -59,7 +61,9 @@ const appRoutes: Routes = [
     DishFormComponent,
     ImgSliderComponent,
     FilterDishesPipe,
-    FiltersComponent
+    FiltersComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

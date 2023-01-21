@@ -1,0 +1,11 @@
+
+    <form id="form" #newDishForm="ngForm" (ngSumbit)="register()">
+        <h2>Register</h2>
+        <label for="email">email</label>
+        <input type="text" id="email" name="email" ngModel required>
+        <label for="passwd">password</label>
+        <input type="text" id="passwd" name="passwd" ngModel required>
+        <label for="conf-passwd">confirm password</label>
+        <input type="text" id="conf-passwd" name="conf-passwd" ngModel required>
+        <button type="submit" id="register">sign up</button>
+    </form>

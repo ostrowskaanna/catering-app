@@ -32,6 +32,9 @@ export class MenuCardComponent {
   faMinus = faMinus;
   dishLocalCounter = 0;
   
+  @Input() isMinPrice: boolean = false;
+  @Input() isMaxPrice: boolean = false;
+
   async ngOnInit() {
 
     //tu było pobieranieurl na biezaco ale jednka mam je w bazie

@@ -11,9 +11,9 @@
         </select>
         <label for="min-price" class="form-label">min price: </label>
         <span id="min-price-txt">{{this.minPrice}}€</span>
-        <input type="range" class="form-range" min="0" max="99" id="min-price" step="1" value="0" (mousemove)="minPriceSelected($event)">
+        <input type="range" class="form-range" min="1" max="40" id="min-price" step="1" value="0" (mousemove)="minPriceSelected($event)">
         <label for="max-price" class="form-label">max price: </label>
         <span id="max-price-txt">{{this.maxPrice}}€</span>
-        <input type="range" class="form-range" min="1" max="100" id="max-price" step="1" value="100" (mousemove)="maxPriceSelected($event)">
+        <input type="range" class="form-range" min="1" max="40" id="max-price" step="1" value="40" (mousemove)="maxPriceSelected($event)">
     </form>
 </div>

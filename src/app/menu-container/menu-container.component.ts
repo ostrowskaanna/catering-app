@@ -22,6 +22,15 @@ export class MenuContainerComponent {
   allUrls: string[] = [];
   p: number = 1;
 
+  minPriceInCards: number = 100;
+
+  ngOnInit(){
+    this.service.originSelected = '';
+    this.service.typeSelected = '';
+    this.service.minPriceSelected = -1;
+    this.service.maxPriceSelected = -1;
+  }
+
   constructor(public service: DataService, private db: AngularFirestore, private fs: AngularFireStorage, public dialog: MatDialog) {
     this.dishesRef = db.collection('dishes').snapshotChanges().pipe(map(dishes => dishes.map(dish => {
       const data = dish.payload.doc.data();

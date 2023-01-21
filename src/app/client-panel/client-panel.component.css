@@ -1,0 +1,35 @@
+#login {
+    display: none;
+}
+
+#register {
+    display: block;
+}
+
+#page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 86%;
+    width: 100%;
+    margin-top: 0px;
+    background-image: url('../../assets/images/background.jpg');
+    display: flex;
+}
+
+#link {
+    width: 300px;
+    height: 50px;
+    background-color: #dbcec3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#button {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}

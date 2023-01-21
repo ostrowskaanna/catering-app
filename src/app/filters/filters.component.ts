@@ -7,30 +7,36 @@ import { DataService } from '../data.service';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent {
-  origins = ['italy', 'great britain', 'asia', 'usa', 'spain'];
-  types = ['breakfast', 'dinner', 'dessert', 'snack'];
-  minPrice = 0;
-  maxPrice = 100;
+  origins = ['', 'italy', 'great britain', 'asia', 'usa', 'spain'];
+  types = ['', 'breakfast', 'dinner', 'dessert', 'snack'];
+  minPrice: number = -1;
+  maxPrice: number = -1;
 
-  constructor(public service: DataService) { }
+
+  constructor(public service: DataService) { 
+    this.minPrice = this.service.smallestPrice;
+    this.maxPrice = this.service.biggestPrice;
+  }
+
+  //TO DO add parent component refreshing 
 
   originSelected(event : any) {
-    console.log(event.target.value);
     this.service.originSelected = event.target.value;
   }
 
   typeSelected(event : any) {
-    console.log(event.target.value);
     this.service.typeSelected = event.target.value;
   }
 
   minPriceSelected(event: any) {
     this.minPrice = event.target.value;
+    console.log(this.minPrice);
     this.service.minPriceSelected = event.target.value;
   }
 
   maxPriceSelected(event: any) {
     this.maxPrice = event.target.value;
+    console.log(this.maxPrice);
     this.service.maxPriceSelected = event.target.value;
   }
 

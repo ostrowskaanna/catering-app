@@ -3,7 +3,7 @@
                         <app-filters></app-filters>
                         <button id="addButton" (click)="addDish()">add new dish</button>
                         <div id="dishes-container">
-                                <app-menu-card *ngFor="let dish of ((dishesRef | filterDishes: {origin: 'italy'}) | async) | paginate: { itemsPerPage: 3, currentPage: p }" (newItemEvent)="deleteDish($event)" 
+                                <app-menu-card *ngFor="let dish of ((dishesRef | filterDishes: {origin: this.service.originSelected} | filterDishes: {type: this.service.typeSelected} | filterDishes: {minPrice: this.service.minPriceSelected} | filterDishes: {maxPrice: this.service.maxPriceSelected}) | async) | paginate: { itemsPerPage: 3, currentPage: p }" (newItemEvent)="deleteDish($event)" 
                                         [dishId] = "dish.id"
                                         [dishName]= "dish.data.name" 
                                         [dishOrigin] = "dish.data.origin"
@@ -11,7 +11,8 @@
                                         [dishPhoto] = "dish.data.url[0]"
                                         [dishQuantity]="dish.data.quantity"
                                         [dishPrice]="dish.data.price"
-                                        [allPhotos]="dish.data.url">
+                                        [allPhotos]="dish.data.url"
+                                        [isMinPrice] = "dish.data.price < this.minPriceInCards ? true : false">
                                 </app-menu-card>
                         </div>
                         <pagination-controls class="my-pagination" (pageChange)="p = $event;"></pagination-controls>

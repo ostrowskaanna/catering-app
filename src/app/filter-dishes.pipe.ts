@@ -11,14 +11,38 @@ export class FilterDishesPipe implements PipeTransform {
   constructor(private db: AngularFirestore) {}
 
   transform(dishesRef: Observable<any>, filters: {[key: string]: any}): Observable<any> {
-    //TO DO
-    // let filtered = this.db.collection('dishes').snapshotChanges().pipe(map(dishes => filter((dish: any) => dish.origin == 'italy'))).subscribe(dishes => map((dish: any) => {
-    //   const data = dish.payload.doc.data();
-    //   const id = dish.payload.doc.id;
-    //   return {id, data};
-    // }))
-    // return filtered;
-    return dishesRef;
+    let currFilter = null;
+    for(let filter in filters){
+      currFilter = filter;
+    }
+    if(currFilter == 'origin'){
+      console.log("origin");
+      return dishesRef.pipe(
+        map(dishes => 
+          dishes.filter((dish: any) => (filters['origin'] != '' ? dish.data.origin == filters['origin'] : dish.data.origin)))
+      );
+    }
+    else if(currFilter == 'type'){
+      console.log("type");
+      return dishesRef.pipe(
+        map(dishes => 
+          dishes.filter((dish: any) => (filters['type'] != '' ? dish.data.type == filters['type'] : dish.data.type)))
+      );
+    }
+    else if(currFilter == 'minPrice'){
+      console.log("minPrice");
+      return dishesRef.pipe(
+        map(dishes => 
+          dishes.filter((dish: any) => (filters['minPrice'] != -1 ? dish.data.price >= filters['minPrice'] : dish.data.price)))
+      );
+    }
+    else {
+      console.log("maxPrice");
+      return dishesRef.pipe(
+        map(dishes => 
+          dishes.filter((dish: any) => (filters['maxPrice'] != -1 ? dish.data.price <= filters['maxPrice'] : dish.data.price)))
+      );
+    }
   }
 }
 
