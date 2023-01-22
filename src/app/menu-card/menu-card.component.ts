@@ -9,7 +9,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { updateDoc, arrayUnion, doc, getFirestore } from 'firebase/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-menu-card',
   templateUrl: './menu-card.component.html',
@@ -17,7 +17,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 })
 export class MenuCardComponent {
 
-  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage, private db: AngularFirestore, private dbModule: AngularFireModule) {}
+  constructor(public service: DataService, public dialog: MatDialog, private fs: AngularFireStorage, private db: AngularFirestore, private dbModule: AngularFireModule, public authService: AuthService) {}
 
   @Input() dishId!: number;
   @Input() dishName!: string;

@@ -13,4 +13,4 @@
         </div>
     </div>
 </div>
-<button id="removeButton" (click)="removeDishFromDB()">remove dish</button>
+<button id="removeButton" (click)="removeDishFromDB()"  [ngStyle]="{'display': (this.authService.isLoggedIn && this.authService.userData.role=='admin') ? 'block' : 'none'}">remove dish</button>

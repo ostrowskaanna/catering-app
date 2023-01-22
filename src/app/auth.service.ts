@@ -23,26 +23,21 @@ export class AuthService {
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
+    console.log("authService constructor");
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         console.log("saving local");
-        this.userData = user;
+        console.log(this.userData);
+        //this.userData = user;
 
-        // const usersRef = this.afs.collection('dishes').snapshotChanges().pipe(map(users => users.map(user=> {
-        //   return user.payload.doc.data();
-        // })));
-
-        // const userFound = usersRef.forEach(users => users.filter((user_: any) => user_.uid==user.uid));
-        // usersRef.subscribe(users => users.forEach((user_: any) => {
-        //   if(user_.uid == user.uid){
-        //     this.userData['role'] = user_.role;
-            
-        //   }
-        // }))
-
-        this.userData['role'] = 'admin';
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
+
+        const usersRef = this.afs.collection('dishes').snapshotChanges().pipe(map(users => users.map(user=> {
+          return user.payload.doc.data();
+        })));
+
+
       } else {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
@@ -51,10 +46,11 @@ export class AuthService {
   }
   // Sign in with email/password
   SignIn(email: string, password: string) {
+    console.log("signing in");
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, false);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.router.navigate(['client-panel-logged-in']);
@@ -66,12 +62,14 @@ export class AuthService {
         window.alert(error.message);
       });
   }
+
+
   // Sign up with email/password
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, true);
         this.router.navigate(['client-panel-logged-in']);
         this.service.clientPanelLink = '/client-panel-logged-in';
       })
@@ -87,19 +85,26 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
+  SetUserData(user: any, addToDB: boolean) {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      role: 'user' //samodzielna rejestracja to user
+      role: 'admin' //lub user to do zmiany żeby pobierać z DB
     };
+    this.userData = userData;
+    if(addToDB)
+      this.AddToDb(user, userData);
+  }
+
+  AddToDb(user: any, userData: User) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `users/${user.uid}`
+    );
     return userRef.set(userData, {
       merge: true,
     });
   }
+
   // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {

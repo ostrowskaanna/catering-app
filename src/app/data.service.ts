@@ -31,6 +31,7 @@ export class DataService {
   maxPriceSelected: number = -1;
   
   clientPanelLink: string = '/client-panel';
+  
 
   addDish(dish: any) {
     let exist = false;
