@@ -9,13 +9,13 @@ import { DataService } from '../data.service';
 export class FiltersComponent {
   origins = ['', 'italy', 'great britain', 'asia', 'usa', 'spain'];
   types = ['', 'breakfast', 'dinner', 'dessert', 'snack'];
-  minPrice: number = -1;
-  maxPrice: number = -1;
+  minPrice: number = 1;
+  maxPrice: number = 20;
 
 
   constructor(public service: DataService) { 
-    this.minPrice = this.service.smallestPrice;
-    this.maxPrice = this.service.biggestPrice;
+    //this.minPrice = this.service.smallestPrice;
+    //this.maxPrice = this.service.biggestPrice;
   }
 
   //TO DO add parent component refreshing 

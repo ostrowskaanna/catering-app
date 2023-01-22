@@ -33,12 +33,16 @@ import { FiltersComponent } from './filters/filters.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { AuthService } from './auth.service';
+import { ClientPanelLoggedInComponent } from './client-panel-logged-in/client-panel-logged-in.component';
+
 const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'menu', component: MenuContainerComponent },
   { path: 'shipping', component: ShippingInfoComponent },
   { path: 'contact', component: ContactInfoComponent },
   { path: 'client-panel', component: ClientPanelComponent },
+  { path: 'client-panel-logged-in', component: ClientPanelLoggedInComponent },
   { path: 'payment', component: PaymentComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
@@ -63,7 +67,8 @@ const appRoutes: Routes = [
     FilterDishesPipe,
     FiltersComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClientPanelLoggedInComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,7 @@ const appRoutes: Routes = [
     NgxPaginationModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [OrderComponent]
 })

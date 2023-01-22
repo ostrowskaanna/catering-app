@@ -7,6 +7,7 @@ import { getStorage, ref, getDownloadURL, listAll, StorageReference } from 'fire
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { DishFormComponent } from '../dish-form/dish-form.component';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-menu-container',
@@ -31,7 +32,7 @@ export class MenuContainerComponent {
     this.service.maxPriceSelected = -1;
   }
 
-  constructor(public service: DataService, private db: AngularFirestore, private fs: AngularFireStorage, public dialog: MatDialog) {
+  constructor(public service: DataService, private db: AngularFirestore, private fs: AngularFireStorage, public dialog: MatDialog, public authService: AuthService) {
     this.dishesRef = db.collection('dishes').snapshotChanges().pipe(map(dishes => dishes.map(dish => {
       const data = dish.payload.doc.data();
       const id = dish.payload.doc.id;

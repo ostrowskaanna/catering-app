@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,14 +8,15 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
-  constructor() {
+  constructor(public authService: AuthService) {
 
   }
 
   register(form: any) {
     console.log(form.valid);
-    if(form.valid) {
-      console.log(form.value);
+    if(form.valid && form.value['passwd']==form.value['conf-passwd']) {
+      this.authService.SignUp(form.value['email'], form.value['passwd']);
+
     }
   }
 

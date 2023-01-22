@@ -1,5 +1,5 @@
 <div id="page">
     <app-login id="login"></app-login>
-    <app-register id="register"></app-register>
+    <app-register id="register" ng-show="!this.authService.isLoggedIn"></app-register>
     <div id="link"><p id="info">Already have an account?</p><p id="button" (click)="changeDisplay()">Login.</p></div>
 </div>

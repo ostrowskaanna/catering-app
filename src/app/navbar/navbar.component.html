@@ -4,6 +4,7 @@
     <p id="menu" routerLink="/menu" (click)="changeUnderline($event)">Menu</p>
     <p id="shipping" routerLink="/shipping" (click)="changeUnderline($event)">Shipping</p>
     <p id="contact" routerLink="/contact" (click)="changeUnderline($event)">Contact</p>
-    <p id="client-panel" routerLink="/client-panel" (click)="changeUnderline($event)">Client Panel</p>
+    <p id="client-panel" [routerLink]="this.service.clientPanelLink" (click)="changeUnderline($event)">Client Panel</p>
     <div id="order" (click)="showOrder()"><fa-icon [icon]="faShoppingCart"></fa-icon>Order<div [ngStyle]="{'background-color': this.service.dishCounter>10 ? '#dbcec3': 'white'}" id="products-counter">{{this.service.dishCounter}}</div></div>
+    <p id="username">user: {{this.authService.isLoggedIn ? this.authService.userData.email : 'no user logged in'}}</p>
 </div>

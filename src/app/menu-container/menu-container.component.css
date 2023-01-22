@@ -28,6 +28,7 @@
     cursor: pointer;
     border-color: #dbcec3;
     font-family: "Papyrus";
+    display: none;
 }
 
 .my-pagination ::ng-deep .ngx-pagination .current {

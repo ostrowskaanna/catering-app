@@ -4,6 +4,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from '../data.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { OrderComponent } from '../order/order.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ import { OrderComponent } from '../order/order.component';
 
 export class NavbarComponent {
 
-  constructor(public service: DataService, public dialog: MatDialog) {}
+  constructor(public service: DataService, public dialog: MatDialog, public authService: AuthService) {}
+
 
   faShoppingCart = faShoppingCart;
   logoUrl: string = "assets/images/logo2.png";
