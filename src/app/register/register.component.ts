@@ -11,8 +11,11 @@ export class RegisterComponent {
 
   }
 
-  register() {
-    
+  register(form: any) {
+    console.log(form.valid);
+    if(form.valid) {
+      console.log(form.value);
+    }
   }
 
 }

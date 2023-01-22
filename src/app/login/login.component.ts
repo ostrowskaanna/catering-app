@@ -8,8 +8,11 @@ import { Component } from '@angular/core';
 export class LoginComponent {
 
   constructor() {}
-  login() {
-
+  login(form: any) {
+    console.log(form.valid);
+    if(form.valid) {
+      console.log(form.value);
+    }
   };
 
 }

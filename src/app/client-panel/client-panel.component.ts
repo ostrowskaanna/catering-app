@@ -22,12 +22,14 @@ export class ClientPanelComponent {
         registerForm.style.display = 'none';
         info.innerHTML = "Don't have an account yet?";
         button.innerHTML = "Register";
+        this.currDisplay = 'login';
       }
       else if(this.currDisplay == 'login') {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
         info.innerHTML = "Already have an account?";
         button.innerHTML = "Login";
+        this.currDisplay = 'register';
       }
     }
   }

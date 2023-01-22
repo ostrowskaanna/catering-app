@@ -1,9 +1,9 @@
 
-    <form id="form" #newDishForm="ngForm" (ngSumbit)="login()">
+    <form id="form" #loginForm="ngForm" (ngSumbit)="login(loginForm)">
         <h2>Login</h2>
         <label for="email">email</label>
-        <input type="text" id="email" name="email" ngModel required>
+        <input type="email" id="email" name="email" ngModel email required>
         <label for="passwd">password</label>
-        <input type="text" id="passwd" name="passwd" ngModel required>
-        <button type="submit" id="login">sign in</button>
+        <input type="password" id="passwd" name="passwd" ngModel required>
+        <button type="submit" id="login" (click)="login(loginForm)">sign in</button>
     </form>
